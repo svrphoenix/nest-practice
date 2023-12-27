@@ -27,7 +27,13 @@ export class TodosController {
   }
 
   @Get(':id')
-  getOne(@Param('id', ParseIntPipe) todoId: number): Promise<Todo> {
+  getOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    todoId: number,
+  ): Promise<Todo> {
     return this.todosService.findOneTodo(todoId);
   }
 
@@ -38,7 +44,11 @@ export class TodosController {
 
   @Put(':id')
   replace(
-    @Param('id', ParseIntPipe) todoId: number,
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    todoId: number,
     @Body()
     createTodoDto: CreateTodoDto,
   ): Promise<Todo> {
@@ -47,7 +57,11 @@ export class TodosController {
 
   @Patch(':id')
   update(
-    @Param('id', ParseIntPipe) todoId: number,
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    todoId: number,
     @Body()
     updateTodoDto: UpdateTodoDto,
   ): Promise<Todo> {
@@ -56,7 +70,13 @@ export class TodosController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  delete(@Param('id', ParseIntPipe) todoId: number): Promise<boolean> {
+  delete(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    todoId: number,
+  ): Promise<boolean> {
     return this.todosService.deleteTodo(todoId);
   }
 }

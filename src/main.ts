@@ -24,8 +24,7 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       forbidUnknownValues: true,
-      skipMissingProperties: false, //Thought this would check for missing properties
-      transform: true,
+      skipMissingProperties: false,
     }),
   );
   await app.listen(port);
