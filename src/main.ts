@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     snapshot: true,
   });
-  const port = app.get(ConfigService).get('PORT');
+  const port = app.get(ConfigService).get<number>('PORT') || 3000;
 
   const config = new DocumentBuilder()
     .setTitle('Todos backend application')
